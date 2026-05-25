@@ -31,7 +31,7 @@ pipeline {
                     echo 'Starting ansble'
                     sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
 		    sh "ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK}"
-	    	}
+		}
             }
         }
 

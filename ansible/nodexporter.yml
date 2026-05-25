@@ -1,6 +1,6 @@
 - name: Install Node Exporter on VMs
   hosts: vms
-  become: yes
+  become: no
   vars:
     node_version: "1.8.0"
 
