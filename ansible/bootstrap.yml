@@ -1,0 +1,15 @@
+- name: SSH Key Distribution
+  hosts: vms
+  gather_facts: false
+  tasks:
+    - name: Ensure .ssh directory exists
+      file:
+        path: "~/.ssh"
+        state: directory
+        mode: '0700'
+
+    - name: Deploy SSH Public Key for Jenkins
+      ansible.posix.authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_jenkins_git.pub') }}"

@@ -4,6 +4,8 @@ pipeline {
     environment {
         SSH_CRED_ID = 'github-ssh-key'
         ANSIBLE_PLAYBOOK = 'ansible/update.yml'
+	DEPLOY_PLAYBOOK = 'ansible/nodexporter.yml'
+        INVENTORY = 'ansible/inventory.ini'
     }
 
     stages {
@@ -18,13 +20,16 @@ pipeline {
             steps {
                 echo 'Check syntax'
                 sh "ansible-playbook ${ANSIBLE_PLAYBOOK} --syntax-check"
+		sh "ansible-playbook ${DEPLOY_PLAYBOOK} --syntax-check"
+
             }
         }
 
         stage('3. Deploy Infrastructure') {
             steps {
                 echo 'Starting ansble'
-                sh "ansible-playbook ${ANSIBLE_PLAYBOOK}"
+                sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
+		sh "ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK}"
             }
         }
 
