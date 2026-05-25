@@ -1,0 +1,17 @@
+- name: Update Prometheus Configuration
+  hosts: localhost
+  connection: local
+  vars_files:
+    - list.yml  # Твій файл зі списком світчів
+
+  tasks:
+    - name: Generate prometheus.yml from template
+      template:
+        src: ../prometheus/prometheus.yml.j2
+        dest: ../prometheus/prometheus.yml
+
+    - name: Reload Prometheus configuration
+      uri:
+        url: http://localhost:9090/-/reload
+        method: POST
+        status_code: 200

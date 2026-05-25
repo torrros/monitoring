@@ -1,0 +1,24 @@
+hostel_switches:
+  #Hostel1
+  - {type: HP, name: H1F0R0U1a.swhostel.lp, ip: 10.20.0.179, locate: Hostel}
+  - {type: HP, name: H1F0R0U3.swhostel.lp, ip: 10.20.0.182, locate: Hostel}
+  - {type: HP, name: H1F0R0U4.swhostel.lp, ip: 10.20.0.183, locate: Hostel}
+  - {type: HP, name: H1F0R0U5.swhostel.lp, ip: 10.20.0.184, locate: Hostel}
+  - {type: HP, name: H1F0R0U6.swhostel.lp, ip: 10.20.0.185, locate: Hostel}
+  - {type: HP, name: H1F0R0U7.swhostel.lp, ip: 10.20.0.186, locate: Hostel}
+  - {type: HP, name: H1F0R0U8.swhostel.lp, ip: 10.20.0.187, locate: Hostel}
+  - {type: HP, name: H1F0R0U9.swhostel.lp, ip: 10.20.0.188, locate: Hostel}
+  - {type: HP, name: H1F0R0U10.swhostel.lp, ip: 10.20.0.189, locate: Hostel}
+  - {type: HP, name: H1F0R0U11.swhostel.lp, ip: 10.20.0.190, locate: Hostel}
+  - {type: HP, name: H1F0R0U12.swhostel.lp, ip: 10.20.0.191, locate: Hostel}
+  - {type: HP, name: H1F0R0U13.swhostel.lp, ip: 10.20.0.193, locate: Hostel}
+  - {type: HP, name: H1F0R0U14.swhostel.lp, ip: 10.20.0.194, locate: Hostel}
+  - {type: HP, name: H1F0R0U15.swhostel.lp, ip: 10.20.0.195, locate: Hostel}
+  - {type: HP, name: H1F0R0U16.swhostel.lp, ip: 10.20.0.196, locate: Hostel}
+  - {type: HP, name: H1F0R0U17.swhostel.lp, ip: 10.20.0.197, locate: Hostel}
+  - {type: HP, name: H1F0R0U18.swhostel.lp, ip: 10.20.0.205, locate: Hostel}
+  - {type: HP, name: H1F0R0U19.swhostel.lp, ip: 10.20.0.229, locate: Hostel}
+  - {type: HP, name: H1F0R0U20.swhostel.lp, ip: 10.20.0.230, locate: Hostel}
+  - {type: HP, name: H1F0R0U21.swhostel.lp, ip: 10.20.0.233, locate: Hostel}
+  - {type: DLINK, name: H1F0R0U22.swhostel.lp, ip: 10.20.0.250, locate: Hostel}
+  - {type: DLINK, name: H1FxUx.swhostel.lp, ip: 10.20.0.253, locate: Hostel}

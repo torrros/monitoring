@@ -1,0 +1,38 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'monitoring_server'
+    static_configs:
+      - targets: ['172.16.0.49:9100']
+
+  - job_name: 'vms'
+    static_configs:
+      - targets:
+          - '172.16.0.59:9100'
+          - '192.168.200.81:9100'
+          - '192.168.200.82:9100'
+          - '172.16.0.60:9100'
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['monitoring_cadvisor:8080']
+
+  - job_name: 'snmp_switches'
+    metrics_path: /snmp
+    params:
+      module: [switches_mib]
+    static_configs:
+{% for sw in hostel_switches %}
+      - targets: ['{{ sw.ip }}']
+        labels:
+          switch_name: '{{ sw.name }}'
+          switch_type: '{{ sw.type }}'
+{% endfor %}
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp_exporter:9116
