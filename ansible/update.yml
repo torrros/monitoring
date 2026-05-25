@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   vars_files:
-    - list.yml  # Твій файл зі списком світчів
+    - list.yml
 
   tasks:
     - name: Generate prometheus.yml from template
