@@ -27,9 +27,11 @@ pipeline {
 
         stage('3. Deploy Infrastructure') {
             steps {
-                echo 'Starting ansble'
-                sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
-		sh "ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK}"
+		sshagent([SSH_CRED_ID]) {
+                    echo 'Starting ansble'
+                    sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
+		    sh "ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK}"
+	    	}
             }
         }
 
