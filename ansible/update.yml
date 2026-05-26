@@ -15,3 +15,15 @@
         url: http://prometheus:9090/-/reload
         method: POST
         status_code: 200
+
+    - name: Generate Alertmanager config from template
+      template:
+        src: ../alertmanager/config.yml.j2
+        dest: ../alertmanager/config.yml
+
+    - name: Reload Alertmanager
+      uri:
+        url: http://alertmanager:9093/-/reload
+        method: POST
+        status_code: 200
+      ignore_errors: yes

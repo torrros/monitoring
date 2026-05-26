@@ -28,9 +28,17 @@ pipeline {
         stage('3. Deploy Infrastructure') {
             steps {
 		sshagent([SSH_CRED_ID]) {
-                    echo 'Starting ansble'
-                    sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
-		    sh "ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK}"
+		    withCredentials([
+			string(credentialsId: 'bot-token', variable: 'TG_TOKEN'),
+                        string(credentialsId: 'chat-id', variable: 'TG_CHAT_ID')
+                    ]) {
+                        echo 'Starting ansble'
+		        sh """
+                        ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK} \
+                        -e "telegram_token=${TG_TOKEN} telegram_chat_id=${TG_CHAT_ID}"
+                        """
+		        sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
+		    }
 		}
             }
         }
