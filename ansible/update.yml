@@ -23,7 +23,7 @@
 
     - name: Reload Alertmanager
       uri:
-        url: http://alertmanager:9093/-/reload
+        url: http://localhost:9093/-/reload
         method: POST
         status_code: 200
       ignore_errors: yes
