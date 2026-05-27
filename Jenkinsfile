@@ -24,7 +24,22 @@ pipeline {
 
             }
         }
-
+	
+	stage('0. Bootstrap SSH Keys') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'vm-sudo-password', 
+                                                 passwordVariable: 'VM_PASS', 
+                                                 usernameVariable: 'VM_USER')]) {
+                    echo 'Deploying SSH keys to new hosts...'
+                    sh """
+                    ansible-playbook -i ${INVENTORY} ansible/bootstrap.yml \
+                    -e "ansible_password=${VM_PASS}" \
+                    --extra-vars "ansible_become_password=${VM_PASS}"
+                    """
+                }
+            }
+        }
+	
         stage('3. Deploy Infrastructure') {
             steps {
 		sshagent([SSH_CRED_ID]) {
