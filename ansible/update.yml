@@ -19,7 +19,7 @@
     - name: Generate Alertmanager config from template
       template:
         src: ../alertmanager/config.yml.j2
-        dest: ../alertmanager/config.yml
+        dest: /home/toros/monitoring/prometheus/alertmanager/config.yml
 
     - name: Reload Alertmanager
       command: docker restart alertmanager

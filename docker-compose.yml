@@ -50,7 +50,7 @@ services:
       - "9116:9116"
 
   jenkins:
-    image: jenkins/jenkins:latest
+    build: .
     container_name: jenkins
     restart: unless-stopped
     privileged: true
@@ -81,3 +81,4 @@ volumes:
   prometheus_data:
   grafana_data:
   jenkins_data:
+  
