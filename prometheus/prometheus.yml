@@ -111,6 +111,30 @@ scrape_configs:
         labels:
           switch_name: 'H1FxUx.swhostel.lp'
           switch_type: 'DLINK'
+      - targets: ['10.20.0.36']
+        labels:
+          switch_name: 'H8F5R1U2.swhostel.lp'
+          switch_type: 'DLINK'
+      - targets: ['10.20.0.37']
+        labels:
+          switch_name: 'H8F5R1U3.swhostel.lp'
+          switch_type: 'DLINK'
+      - targets: ['10.20.0.38']
+        labels:
+          switch_name: 'H8F5R1U4.swhostel.lp'
+          switch_type: 'DLINK'
+      - targets: ['10.20.0.40']
+        labels:
+          switch_name: 'H8F4R2U2.swhostel.lp'
+          switch_type: 'DLINK'
+      - targets: ['10.20.0.41']
+        labels:
+          switch_name: 'H8F4R2U3.swhostel.lp'
+          switch_type: 'DLINK'
+      - targets: ['10.20.0.42']
+        labels:
+          switch_name: 'H8F4R2U4.swhostel.lp'
+          switch_type: 'DLINK'
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
