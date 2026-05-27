@@ -1,6 +1,7 @@
 - name: SSH Key Distribution
   hosts: vms
   gather_facts: false
+  ignore_unreachable: yes
   tasks:
     - name: Ensure .ssh directory exists
       file:
@@ -12,4 +13,4 @@
       ansible.posix.authorized_key:
         user: "{{ ansible_user | default('toros') }}"
         state: present
-        key: "{{ lookup('file', '~/.ssh/id_jenkins_git.pub') }}"
+        key: "{{ lookup('file', '/var/jenkins_home/.ssh/id_jenkins_git.pub') }}"

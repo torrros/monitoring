@@ -65,7 +65,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - /home/toros/monitoring/prometheus:/home/toros/monitoring/prometheus
-
+      - /home/toros/.ssh/id_jenkins_git.pub:/var/jenkins_home/.ssh/id_jenkins_git.pub:root
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
