@@ -25,7 +25,7 @@ pipeline {
             }
         }
 	
-	stage('0. Bootstrap SSH Keys') {
+	stage('3. Bootstrap SSH Keys') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'vm-sudo-password', 
                                                  passwordVariable: 'VM_PASS', 
@@ -40,7 +40,7 @@ pipeline {
             }
         }
 	
-        stage('3. Deploy Infrastructure') {
+        stage('4. Deploy Infrastructure') {
             steps {
 		sshagent([SSH_CRED_ID]) {
 		    withCredentials([
@@ -52,13 +52,13 @@ pipeline {
                         ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK} \
                         -e "telegram_token=${TG_TOKEN} telegram_chat_id=${TG_CHAT_ID}"
                         """
-		        sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK}"
+			sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK} -e 'ansible_become_password=${VM_PASS}'"
 		    }
 		}
             }
         }
 
-        stage('4. Verification') {
+        stage('5. Verification') {
             steps {
                 echo 'Check'
                 sh 'curl -f http://prometheus:9090/-/healthy'
