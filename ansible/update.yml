@@ -15,6 +15,9 @@
         url: http://prometheus:9090/-/reload
         method: POST
         status_code: 200
+    
+    - name: Force restart Prometheus to sync Inodes
+      command: docker restart prometheus
 
     - name: Generate Alertmanager config from template
       template:
