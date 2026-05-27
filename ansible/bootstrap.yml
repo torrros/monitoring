@@ -10,6 +10,6 @@
 
     - name: Deploy SSH Public Key for Jenkins
       ansible.posix.authorized_key:
-        user: "{{ ansible_user }}"
+        user: "{{ ansible_user | default('toros') }}"
         state: present
         key: "{{ lookup('file', '~/.ssh/id_jenkins_git.pub') }}"
