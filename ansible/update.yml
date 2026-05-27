@@ -7,8 +7,8 @@
   tasks:
     - name: Generate prometheus.yml from template
       template:
-        src: ../prometheus/prometheus.yml.j2
-        dest: ../prometheus/prometheus.yml
+        src: /home/toros/monitoring/prometheus/prometheus/prometheus.yml.j2
+        dest: /home/toros/monitoring/prometheus/prometheus/prometheus.yml
 
     - name: Reload Prometheus configuration
       uri:
