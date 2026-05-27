@@ -9,10 +9,9 @@ scrape_configs:
   - job_name: 'vms'
     static_configs:
       - targets:
-          - '172.16.0.59:9100'
-          - '192.168.200.81:9100'
-          - '192.168.200.82:9100'
-          - '172.16.0.60:9100'
+{% for host in groups['vms'] %}
+          - '{{ host }}:9100'
+{% endfor %}
 
   - job_name: 'cadvisor'
     static_configs:
