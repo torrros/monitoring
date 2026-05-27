@@ -55,7 +55,10 @@ pipeline {
                         ansible-playbook -i ${INVENTORY} ${ANSIBLE_PLAYBOOK} \
                         -e "telegram_token=${TG_TOKEN} telegram_chat_id=${TG_CHAT_ID}"
                         """
-			sh "ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK} -e 'ansible_become_password=${VM_PASS}'"
+			sh """
+                        ansible-playbook -i ${INVENTORY} ${DEPLOY_PLAYBOOK} \
+                        -e "ansible_become_password=${VM_PASS}"
+                        """
 		    }
 		}
             }
