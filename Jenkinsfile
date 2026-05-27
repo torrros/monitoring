@@ -45,7 +45,10 @@ pipeline {
 		sshagent([SSH_CRED_ID]) {
 		    withCredentials([
 			string(credentialsId: 'bot-token', variable: 'TG_TOKEN'),
-                        string(credentialsId: 'chat-id', variable: 'TG_CHAT_ID')
+                        string(credentialsId: 'chat-id', variable: 'TG_CHAT_ID'),
+			usernamePassword(credentialsId: 'vm-sudo-password', 
+                                         passwordVariable: 'VM_PASS', 
+                                         usernameVariable: 'VM_USER')
                     ]) {
                         echo 'Starting ansble'
 		        sh """
