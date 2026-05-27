@@ -18,12 +18,8 @@
 
     - name: Generate Alertmanager config from template
       template:
-        src: ../alertmanager/config.yml.j2
-        dest: ../alertmanager/config.yml
+        src: /home/toros/monitoring/prometheus/alertmanager/config.yml.j2
+        dest: /home/toros/monitoring/prometheus/alertmanager/config.yml
 
     - name: Reload Alertmanager
-      uri:
-        url: http://localhost:9093/-/reload
-        method: POST
-        status_code: 200
-      ignore_errors: yes
+      command: docker restart alertmanager

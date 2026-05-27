@@ -9,8 +9,8 @@ route:
   receiver: 'telegram'
 
 receivers:
-- name: 'telegram'
-  telegram_configs:
-  - bot_token: "{{ telegram_token }}"
-    chat_id: {{ telegram_chat_id }}
-    send_resolved: true
+  - name: 'telegram'
+    telegram_configs:
+      - bot_token: "{{ telegram_token }}"
+        chat_id: "{{ telegram_chat_id }}"
+        send_resolved: true
