@@ -22,3 +22,6 @@ hostel_switches:
   - {type: HP, name: H1F0R0U21.swhostel.lp, ip: 10.20.0.233, locate: Hostel}
   - {type: DLINK, name: H1F0R0U22.swhostel.lp, ip: 10.20.0.250, locate: Hostel}
   - {type: DLINK, name: H1FxUx.swhostel.lp, ip: 10.20.0.253, locate: Hostel}
+  - {type: DLINK, name: H8F5R1U2.swhostel.lp, ip: 10.20.0.36, locate: Hostel}
+  - {type: DLINK, name: H8F5R1U3.swhostel.lp, ip: 10.20.0.37, locate: Hostel}
+  - {type: DLINK, name: H8F5R1U4.swhostel.lp, ip: 10.20.0.38, locate: Hostel}
