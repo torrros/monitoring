@@ -8,7 +8,7 @@
     - name: Generate prometheus.yml from template
       template:
         src: ../prometheus/prometheus.yml.j2
-        dest: ../prometheus/prometheus.yml
+        dest: /home/toros/monitoring/prometheus/prometheus/prometheus.yml
 
     - name: Reload Prometheus configuration
       uri:
