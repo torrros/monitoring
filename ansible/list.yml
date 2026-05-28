@@ -28,3 +28,4 @@ hostel_switches:
   - {type: DLINK, name: H8F4R2U2.swhostel.lp, ip: 10.20.0.40, locate: Hostel}
   - {type: DLINK, name: H8F4R2U3.swhostel.lp, ip: 10.20.0.41, locate: Hostel}
   - {type: DLINK, name: H8F4R2U4.swhostel.lp, ip: 10.20.0.42, locate: Hostel}
+  - {type: HP, name: test.swhostel.lp, ip: 192.168.38.197, locate: Campus}
