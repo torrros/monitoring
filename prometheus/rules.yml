@@ -29,8 +29,8 @@ groups:
           description: "Switch {{ $labels.switch_name }} (IP: {{ $labels.instance }}) is not responding."
 
       - alert: SwitchPortDown
-        expr: ifOperStatus == 2
-        for: 1m
+        expr: ifOperStatus == 2 and ifAdminStatus == 1
+        for: 2m
         labels:
           severity: warning
         annotations:
