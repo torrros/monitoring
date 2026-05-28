@@ -30,7 +30,7 @@ groups:
 
       - alert: SwitchPortDown
         expr: |
-          (ifOperStatus == 2 and ifAdminStatus == 1 and ifType == 6)
+          (ifOperStatus == 2 and ifAdminStatus == 1)
           and
           (max_over_time(ifOperStatus[24h]) == 1)
         for: 2m
