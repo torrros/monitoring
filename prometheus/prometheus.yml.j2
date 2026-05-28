@@ -30,7 +30,7 @@ scrape_configs:
   - job_name: 'snmp_switches'
     metrics_path: /snmp
     params:
-      module: [switches_mib]
+      module: [if_mib]
     static_configs:
 {% for sw in hostel_switches %}
       - targets: ['{{ sw.ip }}']
