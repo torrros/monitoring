@@ -8,7 +8,7 @@ groups:
           severity: critical
         annotations:
           summary: "Host {{ $labels.instance }} is down"
-          description: "Node Exporter has been down for more than 1 minute."
+          description: "Node Exporter has been down for more than 10 seconds."
 
       - alert: HighCpuLoad
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
@@ -19,14 +19,14 @@ groups:
           summary: "High CPU load on {{ $labels.instance }}"
           description: "CPU load is {{ $value | printf \"%.2f\" }}%."
 
-       - alert: NetworkSwitchOffline
+      - alert: NetworkSwitchOffline
         expr: up{job="snmp_switches"} == 0
         for: 30s
         labels:
           severity: critical
         annotations:
           summary: "Switch {{ $labels.switch_name }} is unreachable"
-          description: "Switch {{ $labels.switch_name }} (IP: {{ $labels.instance }}) of type {{ $labels.switch_type }} is not responding to SNMP scrapes."
+          description: "Switch {{ $labels.switch_name }} (IP: {{ $labels.instance }}) is not responding."
 
       - alert: SwitchPortDown
         expr: ifOperStatus == 2
@@ -35,7 +35,7 @@ groups:
           severity: warning
         annotations:
           summary: "Port {{ $labels.ifName }} on {{ $labels.switch_name }} is down"
-          description: "Interface {{ $labels.ifDescr }} ({{ $labels.ifAlias }}) DOWN."
+          description: "Interface {{ $labels.ifDescr }} DOWN."
 
       - alert: SwitchHighCpu
         expr: yrhCpuUtil1min > 85
