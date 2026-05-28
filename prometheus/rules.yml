@@ -20,7 +20,7 @@ groups:
           description: "CPU load is {{ $value | printf \"%.2f\" }}%."
 
       - alert: NetworkSwitchOffline
-        expr: up{job="snmp_switches"} == 1
+        expr: up{job="snmp_switches"} == 0
         for: 1m
         labels:
           severity: critical
