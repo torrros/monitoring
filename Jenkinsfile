@@ -68,16 +68,30 @@ pipeline {
             steps {
                 echo 'Check'
                 sh 'curl -f http://prometheus:9090/-/healthy'
+		sh 'curl -f http://alertmanager:9093/-/healthy'
             }
         }
     }
 
     post {
         success {
-            echo 'Updated'
+            withCredentials([string(credentialsId: 'bot-token', variable: 'TG_TOKEN'),
+                             string(credentialsId: 'chat-id', variable: 'TG_CHAT_ID')]) {
+                sh """
+                curl -s -X POST https://api.telegram.org/bot${TG_TOKEN}/sendMessage \
+                -d chat_id=${TG_CHAT_ID} \
+                -d text="Pipline succeeded"
+                """
+            }
         }
         failure {
-            echo 'Failure'
+            withCredentials([string(credentialsId: 'bot-token', variable: 'TG_TOKEN'),
+                             string(credentialsId: 'chat-id', variable: 'TG_CHAT_ID')]) {
+                sh """
+                curl -s -X POST https://api.telegram.org/bot${TG_TOKEN}/sendMessage \
+                -d chat_id=${TG_CHAT_ID} \
+                -d text="Pipeline failed"
+                """
+            }
         }
     }
-}

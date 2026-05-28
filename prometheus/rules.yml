@@ -18,3 +18,30 @@ groups:
         annotations:
           summary: "High CPU load on {{ $labels.instance }}"
           description: "CPU load is {{ $value | printf \"%.2f\" }}%."
+
+       - alert: NetworkSwitchOffline
+        expr: up{job="snmp_switches"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Switch {{ $labels.switch_name }} is unreachable"
+          description: "Switch {{ $labels.switch_name }} (IP: {{ $labels.instance }}) of type {{ $labels.switch_type }} is not responding to SNMP scrapes."
+
+      - alert: SwitchPortDown
+        expr: ifOperStatus == 2
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Port {{ $labels.ifName }} on {{ $labels.switch_name }} is down"
+          description: "Interface {{ $labels.ifDescr }} ({{ $labels.ifAlias }}) DOWN."
+
+      - alert: SwitchHighCpu
+        expr: yrhCpuUtil1min > 85
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU on {{ $labels.switch_name }}"
+          description: "Load on CPU is {{ $value }}%."
