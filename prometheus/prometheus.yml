@@ -136,6 +136,10 @@ scrape_configs:
         labels:
           switch_name: 'H8F4R2U4.swhostel.lp'
           switch_type: 'DLINK'
+      - targets: ['192.168.38.197']
+        labels:
+          switch_name: 'test.swhostel.lp'
+          switch_type: 'HP'
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
