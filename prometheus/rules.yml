@@ -29,16 +29,16 @@ groups:
           description: "Switch {{ $labels.switch_name }} (IP: {{ $labels.instance }}) is not responding."
 
       - alert: SwitchPortDown
-        expr: |
-          (ifOperStatus == 2 and ifAdminStatus == 1)
-          and
-          (max_over_time(ifOperStatus[6h]) == 1)
-        for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "Port {{ $labels.ifName }} on {{ $labels.switch_name }} is down"
-          description: "Interface {{ $labels.ifDescr }} DOWN."
+      expr: |
+        (ifOperStatus == 2 and ifAdminStatus == 1)
+        and on (instance, ifIndex) group_left(switch_name, ifName)
+        (max_over_time(ifOperStatus[6h]) == 1)
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Port {{ $labels.ifName }} on {{ $labels.switch_name }} is down"
+        description: "Interface {{ $labels.ifName }} is now DOWN."
 
       - alert: SwitchHighCpu
         expr: yrhCpuUtil1min > 85
