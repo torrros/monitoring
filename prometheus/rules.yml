@@ -31,8 +31,8 @@ groups:
       - alert: SwitchPortDown
         expr: |
           (ifOperStatus == 2 and ifAdminStatus == 1)
-          * on (instance, ifIndex) group_left()
-          (max_over_time(ifOperStatus[6h]) == 1)
+          and on(instance, ifIndex)
+          (max_over_time(ifOperStatus[6h]) > 0)
         for: 2m
         labels:
           severity: warning
