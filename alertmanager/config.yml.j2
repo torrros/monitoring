@@ -17,15 +17,15 @@ receivers:
         parse_mode: 'HTML'
         message: |
           {% raw %}
-<b>Alerts Firing:</b>
-<b>Labels:</b>
- - alertname = {{ .GroupLabels.alertname }}
- - ifIndex = {{ .CommonLabels.ifIndex }}
- - instance = {{ .CommonLabels.instance }}
- - severity = {{ .CommonLabels.severity }}
- - switch_name = {{ .CommonLabels.switch_name }}
- - switch_type = {{ .CommonLabels.switch_type }}
-<b>Annotations:</b>
- - description = {{ .Annotations.description }}
- - summary = {{ .Annotations.summary }}
+          <b>Alerts Firing:</b>
+          <b>Labels:</b>
+           - alertname = {{ .GroupLabels.alertname }}
+           - ifIndex = {{ .CommonLabels.ifIndex }}
+           - instance = {{ .CommonLabels.instance }}
+           - severity = {{ .CommonLabels.severity }}
+           - switch_name = {{ .CommonLabels.switch_name }}
+           - switch_type = {{ .CommonLabels.switch_type }}
+          <b>Annotations:</b>
+           - description = {{ .Annotations.description }}
+           - summary = {{ .Annotations.summary }}
           {% endraw %}
